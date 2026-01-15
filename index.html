@@ -94,11 +94,11 @@
                 <!-- Prompt Input -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-3">
-                        คำอธิบายโลโก้ (Prompt) *
+                        คำอธิบายรูปภาพ (Prompt) *
                     </label>
                     <textarea
                         id="promptText"
-                        placeholder="เช่น: โลโก้สำหรับร้านกาแฟ สไตล์มินิมอล สีน้ำตาล ดูอบอุ่น มีรูปแก้วกาแฟ"
+                        placeholder="เช่น: รูปภาพสำหรับร้านกาแฟ สไตล์มินิมอล สีน้ำตาล ดูอบอุ่น มีรูปแก้วกาแฟ"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                         rows="4"
                     ></textarea>
@@ -195,7 +195,7 @@
             }
 
             if (!prompt) {
-                alert('⚠️ กรุณาใส่คำอธิบายโลโก้');
+                alert('⚠️ กรุณาใส่คำอธิบายรูปภาพ');
                 return;
             }
 
@@ -218,7 +218,7 @@
 
                 // Generate logos one by one
                 for (let i = 0; i < imageCount; i++) {
-                    btnText.innerHTML = `⏳ กำลังสร้างโลโก้... (${i + 1}/${imageCount})`;
+                    btnText.innerHTML = `⏳ กำลังสร้างรูปภาพ... (${i + 1}/${imageCount})`;
                     
                     try {
                         const imageUrl = await generateSingleLogo(apiKey, prompt, sourceImageData, i + 1);
@@ -230,13 +230,13 @@
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('เกิดข้อผิดพลาดในการสร้างโลโก้');
+                alert('เกิดข้อผิดพลาดในการสร้างรูปภาพ');
                 document.getElementById('emptyState').classList.remove('hidden');
                 document.getElementById('logosGrid').classList.add('hidden');
             } finally {
                 setTimeout(() => {
                     btn.disabled = false;
-                    btnText.innerHTML = '✨ สร้างโลโก้';
+                    btnText.innerHTML = '✨ สร้างรูปภาพ';
                 }, 500);
             }
         }
@@ -281,7 +281,7 @@ The logo should be complete, polished, and ready to use professionally.`;
 
             if (!response.ok) {
                 const error = await response.json();
-                throw new Error(error.error?.message || 'ไม่สามารถสร้างโลโก้ได้');
+                throw new Error(error.error?.message || 'ไม่สามารถสร้างรูปภาพได้');
             }
 
             const data = await response.json();
@@ -332,7 +332,7 @@ The logo should be complete, polished, and ready to use professionally.`;
                 <div class="absolute inset-0 flex items-center justify-center">
                     <div class="text-center">
                         <div class="spinner mb-4"></div>
-                        <p class="text-gray-600 font-semibold">กำลังสร้างโลโก้ ${index + 1}...</p>
+                        <p class="text-gray-600 font-semibold">กำลังสร้างรูปภาพ ${index + 1}...</p>
                     </div>
                 </div>
             `;
